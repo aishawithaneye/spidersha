@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="theme-color" content="#ffffff">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="aishawithaneye-stylesheet.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+	<style>
+	</style>
+<!--This first script below disables the "right click" on Android-->	
+	<script>
+		window.oncontextmenu = function(event) {
+		 event.preventDefault();
+		 event.stopPropagation();
+		 return false;
+		};
+  	</script>
+<!--This second script I *think* I need for the speech bubble animations...-->	
+	<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js">
+	</script>
+<!--This third script could actually be what I need for the speech bubble animations... ^_^''-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+</head>
+<!--I forgot what "onunload" does, but I suspect it may have been one of my attempts to add a loading icon that now I'm too nervous to remove in case I'm wrong.-->
+<body onunload="">	
+<div class="video-container">
+<!--Here's the looping spider-web background animation.-->
+  <video autoplay muted loop playsinline>
+    <source src="webloop.mp4" type="video/mp4">
+  </video>
+<!--Below is all the stuff sitting on top of the spider-web.-->
+  <div class="ontopofweb">
+		  <!--Spider-sha-->  		
+		  <div id="Rectangle">
+				<a href="mailto:aishawithaneye@gmail.com"><img src="expressions/transparent.png" class="aisha noSelect" id="button" name="expression" alt="Spider-sha"/></a>
+					<div id="SpeechBubbleAisha">Hi. I'm Aisha with an Eye.
+						</div>
+			  		<!--To Spider-sha's TOP RIGHT-->
+			  			<div id="SpeechBubbleResume">I'm looking for work.
+							</div>
+					<!--To Spider-sha's RIGHT-->
+						<div id="SpeechBubbleYoutube">I make music.
+							</div>
+						<div id="SpeechBubbleVegan">I'm vegan.
+							</div>
+						<div id="SpeechBubbleMedium">I write.
+							</div>
+						<div id="SpeechBubbleDreamCatcher">I paint.
+							</div>
+			        <!--To Spider-sha's TOP LEFT-->	
+			            <div id="SpeechBubbleDepop">I'm selling my clothes!
+							</div>
+					<!--To Spider-sha's LEFT-->	
+						<div id="SpeechBubbleLightwhipYoutube">See my tutorials in HD on Youtube.
+							</div>
+						<div id="SpeechBubbleLightwhipEmail">Join my mailing list to be emailed  when there's a new lesson.
+							</div>
+						<div id="SpeechBubbleLightwhipInstagram">Follow me on Instagram for lessons in your feed.
+							</div>
+			  			<div id="SpeechBubbleLightwhipTiktok">Follow me on Tiktok for lessons in your feed.
+							</div>
+					<!--ABOVE Spider-sha-->
+			  			<div id="SpeechBubbleOwl">Please save us!
+							</div>
+						<div id="SpeechBubbleOwlEmail">Join our mailing list to get emailed opportunities to help!
+							</div>
+						<div id="SpeechBubbleOwlInstagram">Want us in your Instagram feed?
+							</div>
+						<div id="SpeechBubbleOwlFacebook">Prefer us in your Facebook feed?
+							</div>
+                    <!--BELOW Spider-sha-->	
+						<div id="SpeechBubbleOldDevil">I started this story when I was 13.
+							</div>
+						<div id="SpeechBubbleNewDevil">I revamped this story when I was 23.
+							</div>
+						<div id="SpeechBubbleTwitterJim">I've been Tweeting you.
+							</div>
+			  			<div id="SpeechBubbleMrPresident">Be MY president, baby.
+							</div>	
+			  	<!--Below are the bubble buttons.-->
+			    <!--To Spider-sha's TOP RIGHT-->
+			  			<a href="http://resume.aishawithaneye.com/">
+						<img src="bubbles/resumebubble.png" class="button resume noSelect" id="resume" alt="Aisha's Resume" onmouseover="document.expression.src='expressions/happy.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+				<!--To Spider-sha's RIGHT-->
+						<a href="https://www.youtube.com/c/AishawithanEye/playlists?view=50&sort=dd&shelf_id=5">
+						<img src="bubbles/youtubebubble.png" class="button youtube noSelect" id="youtube" alt="Aisha's Youtube Channel" onmouseover="document.expression.src='expressions/happy.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+						<a href="https://www.instagram.com/aishaisavegan/">
+						<img src="bubbles/veganbubble.png" class="button vegan noSelect" id="vegan" alt="Aisha's Vegan Instagram Collection" onmouseover="document.expression.src='expressions/happy.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+						<a href="https://medium.com/@aishawithaneye">
+						<img src="bubbles/mediumbubble.png" class="button medium noSelect" id="medium" alt="Where Aisha writes" onmouseover="document.expression.src='expressions/tiredandsad.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+						<a href="http://catching-dreams.net">
+						<img src="bubbles/dreamcatcherbubble.png" class="button dreamcatcher noSelect" id="dreamcatcher" alt="Aisha's Art Gallery" onmouseover="document.expression.src='expressions/happy.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+			    <!--To Spider-sha's TOP LEFT-->
+			  			<a href="https://www.depop.com/aishawithaneye/">
+						<img src="bubbles/depopbubble.png" class="button depop noSelect" id="depop" alt="Aisha's Depop" onmouseover="document.expression.src='expressions/happy.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+				<!--To Spider-sha's LEFT-->
+						<a href="https://www.youtube.com/playlist?list=PLBO0IyXApBU4QzNd_uZy2qOimeanBj0Kl"><img src="bubbles/lightwhipbubble.png" class="button lightwhipyoutube noSelect" id="lightwhipyoutube" alt="How to Lightwhip" onmouseover="document.expression.src='expressions/happy.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+						<a href="http://lightwhip.com"><img src="bubbles/lightwhipbubbleemail.png" class="button lightwhipemail noSelect" id="lightwhipemail" alt="Get email updates on new lightwhipping lessons" onmouseover="document.expression.src='expressions/happy.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+						<a href="https://www.instagram.com/howtolightwhip/"><img src="bubbles/lightwhipbubbleinstagram.png" class="button lightwhipinstagram noSelect" id="lightwhipinstagram" alt="Get lightwhip updates in your Instagram feed" onmouseover="document.expression.src='expressions/happy.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+			  			<a href="https://www.tiktok.com/@aishawithaneye"><img src="bubbles/lightwhiptiktok.png" class="button lightwhiptiktok noSelect" id="lightwhiptiktok" alt="Check out my Tiktok" onmouseover="document.expression.src='expressions/happy.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+				<!--ABOVE Spider-sha-->
+						<a href="http://savetheburrowingowl.org">
+						<img src="bubbles/burrowingowlbubble.png" class="button owl noSelect" id="owl" alt="Help Save the Burrowing Owl" onmouseover="document.expression.src='expressions/happy.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+						<a href="http://signupto.savetheburrowingowl.org/">
+						<img src="bubbles/burrowingowlbubbleemail.png" class="button owlemail noSelect" id="owlemail" alt="Get updates on this project to save the owls in your email" onmouseover="document.expression.src='expressions/happy.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+						<a href="https://www.instagram.com/savetheburrowingowl/">
+						<img src="bubbles/burrowingowlbubbleinstagram.png" class="button owlinstagram noSelect" id="owlinstagram" alt="Follow this project to save the owls in your Instagram feed" onmouseover="document.expression.src='expressions/happy.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+						<a href="https://www.facebook.com/savetheburrowingowl/">
+						<img src="bubbles/burrowingowlbubblefacebook.png" class="button owlfacebook noSelect" id="owlfacebook" alt="Like on Facebook to see updates to this project in your feed" onmouseover="document.expression.src='expressions/happy.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+				<!--BELOW Spider-sha-->
+						<a href="http://dealingwiththedevil.com/"><img src="bubbles/newdevilbubble.png" class="button newdevil noSelect" id="newdevil" alt="Dealing with the Devil circa 2011" onmouseover="document.expression.src='expressions/happy.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+						<a href="http://old.dealingwiththedevil.com/index2.htm"><img src="bubbles/olddevilbubble.png" class="button olddevil noSelect" id="olddevil" alt="Dealing with the Devil circa 2003" onmouseover="document.expression.src='expressions/tiredandsad.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+						<a href="https://twitter.com/aishawithaneye"><img src="bubbles/jimtwitterbubble.png" class="button twitterjim noSelect" id="twitterjim" alt="See my tweets at Jim Carrey" onmouseover="document.expression.src='expressions/sortabored.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+			  			<a href="https://sites.google.com/view/aishawithaneye/stories-of-the-billows/fall-2019-the-fifth-planting-the-unknown-heroes?authuser=0">
+						<img src="bubbles/mrpresidentbubble.png" class="button mrpresident noSelect" id="mrpresident" alt="Jim Carrey for President... of Aisha with an Eye" onmouseover="document.expression.src='expressions/happy.gif'" onmouseout="document.expression.src='expressions/transparent.png'"/></a>
+					</div>
+<!--Here is my script containing the .js for the speech-bubble animations.-->
+	<script src="aishawithaneye.js"></script>
+	</div>
+  </div>
+</body>
+</html>

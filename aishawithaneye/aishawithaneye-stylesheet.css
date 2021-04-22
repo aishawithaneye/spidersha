@@ -1,0 +1,850 @@
+@charset "UTF-8";
+/* This first part with the star disables longpress on iOS so it doesn't get in the way of users tapping the bubbles. However, currently, on my janky iPhone 6 it looks like there is an issue with the mouseover animation that changes Spider-sha's expressions. Like, they need to be uploaded upfront before the user tap-holds a bubble. Also, users will tap a bubble instead of tap-hold it so they immediately open the link. I've tried endlessly to see if I could make tap do what tap-hold does--where the speech-bubble is revealing on the first tap--so the user needs to tap twice to open the link. If you know how to make my dream a reality, please help! */
+*:not(input):not(textarea) {
+  -webkit-user-select: none; /* disable selection/Copy of UIWebView */
+  -webkit-touch-callout: none; /* disable the IOS popup when long-press on a link */
+}  
+
+html {
+  Height: 100%;
+}
+
+body {
+	  font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
+	  height: 100%;
+	  background-color: #010001;
+	  margin: 0;
+	}
+
+* {
+  box-sizing: border-box;
+}
+body, html {
+  margin: 0;
+  height: 100%;
+  overflow: auto;
+}
+
+/*This next part puts the video on loop behind all the other elements*/
+.video-container {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.video-container video {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left:50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+}
+.ontopofweb {
+  z-index: 2;
+}
+/*This next part was for when I couldn't get the video to play on iOS. It's fixed now, but I'm worried deleting it might break something...*/
+.still-container {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left:50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+}
+/*Below is the DIV that's styled to contain Spider-sha's expressions and keeps them centered above the video*/
+	#Rectangle {
+	  width: 200px;
+	  height: 200px;
+	  background-color: transparent;
+	  position: absolute;
+	  left: 50%;
+	  top: 50%;
+	  transform: translate(-50%,-50%);
+	  }
+
+/*How the bubbles expand on mouseover*/
+	.button {
+		position: absolute;
+		opacity: 0.5;
+		transition: 0.3s ease;
+		cursor: pointer;
+		}
+	.button:hover {
+		opacity: 1;
+		transform: scale(3, 3);
+		}
+	.button:focus {
+	  outline: 0;
+		}
+
+/*Position and size of clickable bubbles*/
+/*ON Spider-sha, she is not a bubble, but she is clickable*/
+	.aisha {
+		position: relative;
+		width: 200px;
+		height: 200px;
+		cursor: pointer;
+		display: inline-block;
+		}
+/*Bubbles to Spider-sha's TOP RIGHT*/
+	.resume {
+		width: 50px;
+		top: -100px;
+		left: -100px;
+		}
+/*Bubbles to Spider-sha's RIGHT*/
+	.youtube {
+		width: 50px;
+		top: 75px;
+		left: -197px;
+		}
+	.vegan {
+		width: 40px;
+		top: 78px;
+		left: -132px;
+		}
+	.medium {
+		width: 30px;
+		top: 85px;
+		left: -76px;
+		}
+	.dreamcatcher {
+		width: 25px;
+		top: 87px;
+		left: -31px;
+		}
+/*Bubbles to Spider-sha's TOP LEFT*/
+	.depop {
+		width: 50px;
+		top: -100px;
+		left: 250px;
+		}
+/*Bubbles to Spider-sha's LEFT*/
+	.lightwhipyoutube {
+		width: 50px;
+		top: 75px;
+		left: 349px;
+		}
+	.lightwhipemail {
+		width: 40px;
+		top: 79px;
+		left: 296px;
+		}
+	.lightwhipinstagram {
+		width: 30px;
+		top: 83px;
+		left: 250px;
+		}
+	.lightwhiptiktok {
+		width: 25px;
+		top: 85px;
+		left: 207px;
+		}
+/*Bubbles ABOVE Spider-sha*/
+	.owl {
+		width: 45px;
+		top: -208px;
+		left: 78px;
+		}
+	.owlemail {
+		width: 40px;
+		top: -134px;
+		left: 82px;
+		}
+	.owlinstagram {
+		width: 30px;
+		top: -80px;
+		left: 86px;
+		}
+	.owlfacebook {
+		width: 25px;
+		top: -35px;
+		left: 89px;
+		}
+/*Bubbles BELOW Spider-sha*/
+	.olddevil {
+		width: 25px;
+		top: 205px;
+		left: 89px;
+		}
+	.newdevil {
+		width: 30px;
+		top: 250px;
+		left: 86px;
+		}
+	.twitterjim {
+		width: 40px;
+		top: 297px;
+		left: 82px;
+		}
+	.mrpresident {
+		width: 45px;
+		top: 362px;
+		left: 78px;
+		}
+
+/*Below is the styling, positioning, and animation of the speech bubbles. Note: "#SpeechBubble::before" is how the arrow is styled*/
+
+/*Hover ON Spider-sha*/
+	#SpeechBubbleAisha {
+	  position: absolute;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 100px;
+	  padding: 10px;
+	  left: 150px;
+	  top: -10px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleAisha::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: 5px;
+	  left: -24px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(180deg);
+	}
+/*Hover on bubbles to Spider-sha's TOP RIGHT*/
+	#SpeechBubbleResume {
+	  position: absolute;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 100px;
+	  padding: 10px;
+	  left: -45px;
+	  top: 20px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleResume::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: 2px;
+	  left: 90px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(25deg);
+	}
+/*Hover on bubbles to Spider-sha's RIGHT*/
+	#SpeechBubbleYoutube {
+	  position: absolute;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 100px;
+	  padding: 10px;
+	  left: -45px;
+	  top: 20px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleYoutube::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: 5px;
+	  left: 90px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(25deg);
+	}
+	#SpeechBubbleVegan {
+	  position: absolute;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 100px;
+	  padding: 10px;
+	  left: -45px;
+	  top: 20px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleVegan::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: -10px;
+	  left: 85px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(38deg);
+	}
+	#SpeechBubbleMedium {
+	  position: absolute;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 80px;
+	  padding: 10px;
+	  left: -25px;
+	  top: 5px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleMedium::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: -15px;
+	  left: 60px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(45deg);
+	}
+	#SpeechBubbleDreamCatcher {
+	  position: absolute;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 80px;
+	  padding: 10px;
+	  left: -20px;
+	  top: -10px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleDreamCatcher::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: -20px;
+	  left: 60px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(60deg);
+	}
+/*Hover on bubbles to Spider-sha's TOP LEFT*/
+	#SpeechBubbleDepop {
+	  position: relative;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 100px;
+	  padding: 10px;
+	  left: 140px;
+	  top: -200px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleDepop::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: 10px;
+	  left: -20px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(175deg);
+	}
+/*Hover on bubbles to Spider-sha's LEFT*/
+	#SpeechBubbleLightwhipYoutube {
+	  position: relative;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 100px;
+	  padding: 10px;
+	  left: 140px;
+	  top: -300px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleLightwhipYoutube::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: 10px;
+	  left: -20px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(175deg);
+	}
+	#SpeechBubbleLightwhipEmail {
+	  position: relative;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 150px;
+	  padding: 10px;
+	  left: 130px;
+	  top: -403px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleLightwhipEmail::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: -3px;
+	  left: -20px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(170deg);
+	}
+	#SpeechBubbleLightwhipInstagram {
+	  position: relative;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 120px;
+	  padding: 10px;
+	  left: 135px;
+	  top: -520px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleLightwhipInstagram::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: 0px;
+	  left: -15px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(165deg);
+	}
+	#SpeechBubbleLightwhipTiktok {
+	  position: relative;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 120px;
+	  padding: 10px;
+	  left: 150px;
+	  top: -600px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleLightwhipTiktok::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: 5px;
+	  left: -26px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(170deg);
+	}
+	#SpeechBubbleLightwhip {
+	  position: relative;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 100px;
+	  padding: 10px;
+	  left: 400px;
+	  top: -200px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleLightwhip::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: 20px;
+	  left: -28px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(180deg);
+	}
+
+/*Hover on bubbles ABOVE Spider-sha*/
+	#SpeechBubbleMrPresident {
+	  position: absolute;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 100px;
+	  padding: 10px;
+	  left: -40px;
+	  top: 0px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleMrPresident::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: 20px;
+	  left: 90px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(255deg);
+	}
+	#SpeechBubbleOwl {
+	  position: absolute;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 100px;
+	  padding: 10px;
+	  left: -70px;
+	  top: -222px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleOwl::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: 20px;
+	  left: 90px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(255deg);
+	}
+	#SpeechBubbleOwlEmail {
+	  position: absolute;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 110px;
+	  padding: 10px;
+	  left: -50px;
+	  top: -230px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleOwlEmail::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: 50px;
+	  left: 95px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(260deg);
+	}
+	#SpeechBubbleOwlInstagram {
+	  position: absolute;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 100px;
+	  padding: 10px;
+	  left: -50px;
+	  top: -160px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleOwlInstagram::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: 25px;
+	  left: 90px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(260deg);
+	}
+	#SpeechBubbleOwlFacebook {
+	  position: absolute;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 100px;
+	  padding: 10px;
+	  left: -45px;
+	  top: -95px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleOwlFacebook::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: 25px;
+	  left: 90px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(260deg);
+	}
+
+/*Hover on bubbles BELOW Spider-sha*/
+	#SpeechBubbleOldDevil {
+	  position: absolute;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 100px;
+	  padding: 10px;
+	  left: -50px;
+	  top: 120px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleOldDevil::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: 90px;
+	  left: 73px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(195deg);
+	}
+	#SpeechBubbleNewDevil {
+	  position: absolute;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 100px;
+	  padding: 10px;
+	  left: 155px;
+	  top: 120px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleNewDevil::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: 90px;
+	  left: -5px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(255deg);
+	}
+	#SpeechBubblePete {
+	  position: absolute;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 90px;
+	  padding: 10px;
+	  left: -40px;
+	  top: -20px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubblePete::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: -16px;
+	  left: 70px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(50deg);
+	}
+	#SpeechBubbleRealDevil {
+	  position: absolute;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 100px;
+	  padding: 10px;
+	  left: 155px;
+	  top: -20px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleRealDevil::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: 22px;
+	  left: -20px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(175deg);
+	}
+	#SpeechBubbleTwitterJim {
+	  position: absolute;
+	  transform-origin: 0% 100%;
+	  text-align: center;
+	  background-color: white;
+	  color: black;
+	  border-radius: 10px;
+	  width: 80px;
+	  padding: 10px;
+	  left: 150px;
+	  top: -50px;
+	  transform: scale(0);
+	  animation-fill-mode: forwards;
+	}
+	#SpeechBubbleTwitterJim::before {
+	  content: "";
+	  display: block;
+	  width: 0;
+	  position: absolute;
+	  bottom: -4px;
+	  left: -20px;
+	  border-style: solid;
+	  border-width: 15px;
+	  border-color: white transparent transparent white;
+	  transform: rotate(165deg);
+	}
+
+/*Animation keyframes*/
+	@keyframes expand-bounce {
+	  0% {
+		transform: scale(0);
+	  }
+	  50% {
+		transform: scale(1.25);
+	  }
+	  100% {
+		transform: scale(1);
+	  }
+	}
+
+	@keyframes shrink {
+	  0% {
+		transform: scale(1);
+	  }
+	  100% {
+		transform: scale(0);
+	  }
+	}
+
+/*Modifications for phone sizes and my Macbook*/
+@media screen and (orientation: portrait) {
+  body, html {
+  overflow: hidden;
+  font-family: '-apple-system','HelveticaNeue';
+}
+
+.video-container {
+  transform: scale(0.62);
+  overflow: visible;
+}
+}
+@media (max-height: 728px) {
+  body, html {
+  overflow: hidden;
+}
+
+.video-container {
+  transform: scale(0.65);
+  overflow: visible;
+}
+	#SpeechBubbleAisha {
+	  top: -18px;
+	  left: 140px;
+	}
+	#SpeechBubbleLightwhipYoutube {
+	  top: -318px;
+	}
+	#SpeechBubbleLightwhipEmail {
+	  top: -425px;
+	}
+    #SpeechBubbleLightwhipInstagram {
+	  left: 125px;
+	}
+    #SpeechBubbleLightwhipTiktok {
+	  top: -615px;
+	  left: 145px;
+	}
+	#SpeechBubbleDepop::before {
+	  bottom: 25px;
+	  transform: rotate(185deg);
+	}
+    #SpeechBubbleTwitterJim {
+	  top: -80px;
+	}
+}
+@media (max-width: 375px) {
+  body, html {
+  overflow: hidden;
+  font-family: '-apple-system','HelveticaNeue';
+	}
+.video-container {
+  transform: scale(0.55);
+  overflow: visible;
+}}

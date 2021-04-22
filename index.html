@@ -29,7 +29,11 @@
 	</script>
 </head>
 <!--I forgot what "onunload" does, but I suspect it may have been one of my attempts to add a loading icon that now I'm too nervous to remove in case I'm wrong.-->
-<body onunload="">	
+<body onunload="">
+<!--Here's my loading spinner-->
+<div id="loading">
+  <img id="loading-image" src="owl.gif" alt="Loading..." />
+</div>
 <div class="video-container">
 <!--Here's the looping spider-web background animation.-->
   <video autoplay muted loop playsinline>
@@ -123,6 +127,12 @@
 					</div>
 <!--Here is my script containing the .js for the speech-bubble animations.-->
 	<script src="aishawithaneye.js"></script>
+<!--Here is my loading spinner script.-->
+	<script>
+  		$(window).load(function() {
+    	$('#loading').hide();
+  		});
+	</script>
 	</div>
   </div>
 </body>

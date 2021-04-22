@@ -4,6 +4,26 @@
   -webkit-user-select: none; /* disable selection/Copy of UIWebView */
   -webkit-touch-callout: none; /* disable the IOS popup when long-press on a link */
 }  
+/* Here's my loading spinner's styling */
+#loading {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  display: block;
+  opacity: 0.7;
+  background-color: #fff;
+  z-index: 99;
+  text-align: center;
+}
+
+#loading-image {
+  position: absolute;
+  top: 100px;
+  left: 240px;
+  z-index: 100;
+}
 
 html {
   Height: 100%;
@@ -811,7 +831,7 @@ body, html {
 }
 
 .video-container {
-  transform: scale(0.68);
+  transform: scale(0.65);
   overflow: visible;
 }
 	#SpeechBubbleAisha {
